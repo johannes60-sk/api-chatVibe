@@ -11,6 +11,7 @@ const app = express();
 
 const server = http.createServer(app);
 const io = socketio(server, {
+  transports: ['polling', 'websocket'],
   cors: {
     origin: "https://api-chat-vibe.vercel.app",
     methods: ["GET", "POST"],
