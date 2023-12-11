@@ -8,10 +8,16 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 const router = require('./router');
 
 const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
 
-// app.use(cors());
+app.use(cors());
+
+const server = http.createServer(app);
+const io = socketio(server, {
+  cors: {
+    origin: "https://api-chat-vibe.vercel.app"
+  }
+});
+
 // app.use(cors({ origin: 'https://chat-vibe-three.vercel.app' }));
 // Configurez CORS pour Socket.IO
 // io.use((socket, next) => {
@@ -22,7 +28,7 @@ const io = socketio(server);
 //   })(socket.request, socket.request.res, next);
 // });
 
-io.origins('*:*')
+// io.origins('*:*')
 
 app.use(router);
 
