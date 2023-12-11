@@ -15,12 +15,12 @@ const io = socketio(server, {
     // origin: "https://api-chat-vibe.vercel.app",
     // origin: "http://localhost:5000/",
     origin: "https://chat-vibe-three.vercel.app/",
-    credentials: true
-    // methods: ["GET", "POST"],
+    credentials: true,
+    methods: ["GET", "POST"],
   }
 });
 
-// app.use(cors({ origin: 'https://api-chat-vibe.vercel.app' }));
+app.use(cors({ origin: 'https://chat-vibe-three.vercel.app/' }));
 
 // app.use((err, req, res, next) => {
 //   console.error(err.stack);
