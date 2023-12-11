@@ -12,7 +12,9 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    origin: "https://api-chat-vibe.vercel.app"
+    origin: "https://api-chat-vibe.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
