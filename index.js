@@ -9,8 +9,6 @@ const router = require('./router');
 
 const app = express();
 
-app.use(cors());
-
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
@@ -18,17 +16,13 @@ const io = socketio(server, {
   }
 });
 
-// app.use(cors({ origin: 'https://chat-vibe-three.vercel.app' }));
-// Configurez CORS pour Socket.IO
-// io.use((socket, next) => {
-//   cors({
-//     origin: 'https://chat-vibe-three.vercel.app',
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true,
-//   })(socket.request, socket.request.res, next);
-// });
+app.use(cors({ origin: 'https://api-chat-vibe.vercel.app' }));
 
-// io.origins('*:*')
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
 
 app.use(router);
 
