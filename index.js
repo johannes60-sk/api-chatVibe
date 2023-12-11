@@ -9,18 +9,29 @@ const router = require('./router');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server);
+const io = socketio(server, {
+  handlePreflightRequest: (req, res) => {
+      const headers = {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true
+      };
+      res.writeHead(200, headers);
+      res.end();
+  }
+});
 
 // app.use(cors());
-app.use(cors({ origin: 'https://chat-vibe-three.vercel.app' }));
+// app.use(cors({ origin: 'https://chat-vibe-three.vercel.app' }));
 // Configurez CORS pour Socket.IO
-io.use((socket, next) => {
-  cors({
-    origin: 'https://chat-vibe-three.vercel.app',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  })(socket.request, socket.request.res, next);
-});
+// io.use((socket, next) => {
+//   cors({
+//     origin: 'https://chat-vibe-three.vercel.app',
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//   })(socket.request, socket.request.res, next);
+// });
+// io.set('origins', '*:*');
+// io.origins('*:*')
 
 app.use(router);
 
