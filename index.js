@@ -11,20 +11,21 @@ const app = express();
 
 const server = http.createServer(app);
 const io = socketio(server, {
-  transports: ['polling', 'websocket'],
   cors: {
-    origin: "https://api-chat-vibe.vercel.app",
-    methods: ["GET", "POST"],
+    // origin: "https://api-chat-vibe.vercel.app",
+    // origin: "http://localhost:5000/",
+    origin: "https://chat-vibe-three.vercel.app/",
     credentials: true
+    // methods: ["GET", "POST"],
   }
 });
 
-app.use(cors({ origin: 'https://api-chat-vibe.vercel.app' }));
+// app.use(cors({ origin: 'https://api-chat-vibe.vercel.app' }));
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something went wrong!');
-});
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).send('Something went wrong!');
+// });
 
 
 app.use(router);
