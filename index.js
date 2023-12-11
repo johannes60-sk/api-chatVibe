@@ -12,9 +12,16 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 // app.use(cors());
-app.use(cors({ origin: 'https://api-chat-vibe-f5akk5tb8-johannes60-sk.vercel.app' }));
+app.use(cors({ origin: 'https://chat-vibe-three.vercel.app' }));
 // Configurez CORS pour Socket.IO
-io.use(cors());
+io.use((socket, next) => {
+  cors({
+    origin: 'https://chat-vibe-three.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  })(socket.request, socket.request.res, next);
+});
+
 app.use(router);
 
 io.on('connect', (socket) => {
