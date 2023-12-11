@@ -11,7 +11,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({ origin: 'https://api-chat-vibe-f5akk5tb8-johannes60-sk.vercel.app' }));
 app.use(router);
 
 io.on('connect', (socket) => {
