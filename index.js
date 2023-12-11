@@ -13,6 +13,8 @@ const io = socketio(server);
 
 // app.use(cors());
 app.use(cors({ origin: 'https://api-chat-vibe-f5akk5tb8-johannes60-sk.vercel.app' }));
+// Configurez CORS pour Socket.IO
+io.use(cors());
 app.use(router);
 
 io.on('connect', (socket) => {
