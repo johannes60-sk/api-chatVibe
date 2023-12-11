@@ -9,15 +9,7 @@ const router = require('./router');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketio(server, {
-  handlePreflightRequest: (req, res) => {
-      const headers = {
-          "Access-Control-Allow-Origin": "https://chat-vibe-9ikl7r8tc-johannes60-sk.vercel.app"
-      };
-      res.writeHead(200, headers);
-      res.end();
-  }
-});
+const io = socketio(server);
 
 // app.use(cors());
 // app.use(cors({ origin: 'https://chat-vibe-three.vercel.app' }));
@@ -29,8 +21,8 @@ const io = socketio(server, {
 //     credentials: true,
 //   })(socket.request, socket.request.res, next);
 // });
-// io.set('origins', '*:*');
-// io.origins('*:*')
+
+io.origins('*:*')
 
 app.use(router);
 
