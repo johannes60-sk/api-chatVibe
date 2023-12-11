@@ -12,7 +12,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    // origin: "https://api-chat-vibe.vercel.app",
     // origin: "http://localhost:5000/",
     origin: "https://chat-vibe-three.vercel.app/",
     credentials: true,
