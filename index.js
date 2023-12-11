@@ -12,8 +12,7 @@ const server = http.createServer(app);
 const io = socketio(server, {
   handlePreflightRequest: (req, res) => {
       const headers = {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true
+          "Access-Control-Allow-Origin": "https://chat-vibe-9ikl7r8tc-johannes60-sk.vercel.app"
       };
       res.writeHead(200, headers);
       res.end();
